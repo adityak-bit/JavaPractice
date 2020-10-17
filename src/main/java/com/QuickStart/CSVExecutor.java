@@ -14,8 +14,8 @@ import com.opencsv.bean.CsvToBeanBuilder;
 public class CSVExecutor {
 
 	public static void main(String[] args) {
-		try {
-			Reader fileReader = Files.newBufferedReader(Paths.get("demo1.csv"));
+		try (Reader fileReader = Files.newBufferedReader(Paths.get("demo1.csv"))) {
+//		Reader fileReader = Files.newBufferedReader(Paths.get("demo1.csv"));
 //		CSVReader csvReader = new CSVReader(fileReader);
 //		String[] nextRow;
 //		while((nextRow = csvReader.readNext())!=null) {
@@ -24,7 +24,7 @@ public class CSVExecutor {
 			// System.out.println(nextRow[2]);
 			// System.out.println(nextRow[3]);
 			// System.out.println("==================");}
-			
+
 			CsvToBean<CSVUser> csvUser = new CsvToBeanBuilder(fileReader).withType(CSVUser.class)
 					.withIgnoreLeadingWhiteSpace(true).build();
 
